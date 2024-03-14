@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-	const [count, setCount] = useState(0);
+	const [lunghezza, setlunghezza] = useState(0);
 	const [result, setResult] = useState("");
+
+	// useEffect(() => {
+	//   console.log('lunghezza',lunghezza)
+	// }, [lunghezza]);
+useEffect(() => {
+  console.log('result',result)
+}, [result]);
 
 	const letters = [
 		"a",
@@ -68,7 +75,14 @@ function App() {
 		"~",
 	];
 
-  
+	const generatePassword = () => {
+		let password = "";
+		for (let i = 0; i < lunghezza; i++) {
+      let index = Math.floor(Math.random() * letters.length);
+			password += letters[index];
+		}
+		return password;
+	};
 
 	const handleGeneration = () => {
 		const passPronto = generatePassword();
@@ -79,7 +93,11 @@ function App() {
 		<>
 			<h1>PASSWORD GENERATOR</h1>
 			<h3>Lunghezza</h3>
-			<input type="number" name="lunghezza" />
+			<input
+				type="number"
+				name="lunghezza"
+				onChange={(e) => setlunghezza(e.target.value)}
+			/>
 			<form action="dop-functional">
 				<div>
 					<label htmlFor="">Lettere maiuscule</label>
