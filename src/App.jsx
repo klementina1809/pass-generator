@@ -2,16 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-	const [lunghezza, setlunghezza] = useState(0);
-	const [result, setResult] = useState("");
-
-	// useEffect(() => {
-	//   console.log('lunghezza',lunghezza)
-	// }, [lunghezza]);
-useEffect(() => {
-  console.log('result',result)
-}, [result]);
-
 	const letters = [
 		"a",
 		"b",
@@ -40,8 +30,36 @@ useEffect(() => {
 		"y",
 		"z",
 	];
-	const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-	const specialCharacters = [
+	const capital = [
+		"A",
+		"B",
+		"C",
+		"D",
+		"E",
+		"F",
+		"G",
+		"H",
+		"I",
+		"J",
+		"K",
+		"L",
+		"M",
+		"N",
+		"O",
+		"P",
+		"Q",
+		"R",
+		"S",
+		"T",
+		"U",
+		"V",
+		"W",
+		"X",
+		"Y",
+		"Z",
+	];
+	const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+	const special = [
 		"!",
 		"@",
 		"#",
@@ -75,17 +93,50 @@ useEffect(() => {
 		"~",
 	];
 
-	const generatePassword = () => {
+	const [lunghezza, setlunghezza] = useState(0);
+	const [checkboxState, setCheckboxState] = useState({
+		capital: false,
+		numbers: false,
+		special: false,
+	});
+	const [result, setResult] = useState("");
+
+	const generatePassword = (source) => {
 		let password = "";
+
 		for (let i = 0; i < lunghezza; i++) {
-      let index = Math.floor(Math.random() * letters.length);
-			password += letters[index];
+			let arr = Math.floor(Math.random() * source.length);
+			let index = Math.floor(Math.random() * source[arr].length);
+			password += source[arr][index];
 		}
 		return password;
 	};
 
+	const handleCheckboxChange = (e) => {
+		const { name, checked } = e.target;
+		setCheckboxState((prevState) => ({
+			...prevState,
+			[name]: checked,
+		}));
+	};
+
+	const getSources = () => {
+		const source = [letters];
+		if (checkboxState.capital) {
+			source.push(capital);
+		}
+		if (checkboxState.numbers) {
+			source.push(numbers);
+		}
+		if (checkboxState.special) {
+			source.push(special);
+		}
+		return source;
+	};
+
 	const handleGeneration = () => {
-		const passPronto = generatePassword();
+		const source = getSources();
+		const passPronto = generatePassword(source);
 		setResult(passPronto);
 	};
 
@@ -101,22 +152,37 @@ useEffect(() => {
 			<form action="dop-functional">
 				<div>
 					<label htmlFor="">Lettere maiuscule</label>
-					<input type="checkbox" name="maiuscule" />
+					<input
+						type="checkbox"
+						name="capital"
+						checked={checkboxState.capital}
+						onChange={handleCheckboxChange}
+					/>
 				</div>
 				<div>
 					<label htmlFor="">Numeri</label>
-					<input type="checkbox" name="numeri" />
+					<input
+						type="checkbox"
+						name="numbers"
+						checked={checkboxState.numbers}
+						onChange={handleCheckboxChange}
+					/>
 				</div>
 				<div>
 					<label htmlFor="">Car speciali</label>
-					<input type="checkbox" name="speciali" />
+					<input
+						type="checkbox"
+						name="special"
+						checked={checkboxState.special}
+						onChange={handleCheckboxChange}
+					/>
 				</div>
 			</form>
 			<button onClick={handleGeneration}>Generation</button>
 			<hr />
 			<h2>PASSWORD:</h2>
 			<div>
-				<input type="text" />
+				<input type="text" value={result} />
 				<button>Copy</button>
 			</div>
 		</>
