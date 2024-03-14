@@ -25,6 +25,12 @@ function App() {
           <input type="checkbox" name="speciali" />
         </div>
 			</form>
+      <hr />
+      <h2>PASSWORD:</h2>
+      <div>
+        <input type="text" />
+        <button>Copy</button>
+      </div>
 		</>
 	);
 }
