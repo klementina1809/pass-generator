@@ -3,87 +3,87 @@ import "./App.css";
 import { capital, numbers, special, letters } from "../helpers";
 
 function App() {
-	const [lunghezza, setlunghezza] = useState(0);
-	const [checkboxState, setCheckboxState] = useState({
+	const [passLength, setpassLength] = useState(0);
+	const [checkboxStatus, setCheckboxStatus] = useState({
 		capital: false,
 		numbers: false,
 		special: false,
 	});
 	const [result, setResult] = useState("");
 
-	const generatePassword = (source) => {
+	const generatePassword = (sources) => {
 		let password = "";
 
-		for (let i = 0; i < lunghezza; i++) {
-			let arr = Math.floor(Math.random() * source.length);
-			let index = Math.floor(Math.random() * source[arr].length);
-			password += source[arr][index];
+		for (let i = 0; i < passLength; i++) {
+			let source = Math.floor(Math.random() * sources.length);
+			let index = Math.floor(Math.random() * sources[source].length);
+			password += sources[source][index];
 		}
 		return password;
 	};
 
 	const handleCheckboxChange = (e) => {
 		const { name, checked } = e.target;
-		setCheckboxState((prevState) => ({
-			...prevState,
+		setCheckboxStatus((prevStatus) => ({
+			...prevStatus,
 			[name]: checked,
 		}));
 	};
 
 	const getSources = () => {
-		const source = [letters];
-		if (checkboxState.capital) {
-			source.push(capital);
+		const sources = [letters];
+		if (checkboxStatus.capital) {
+			sources.push(capital);
 		}
-		if (checkboxState.numbers) {
-			source.push(numbers);
+		if (checkboxStatus.numbers) {
+			sources.push(numbers);
 		}
-		if (checkboxState.special) {
-			source.push(special);
+		if (checkboxStatus.special) {
+			sources.push(special);
 		}
-		return source;
+		return sources;
 	};
 
 	const handleGeneration = () => {
-		const source = getSources();
-		const passPronto = generatePassword(source);
-		setResult(passPronto);
+		const sources = getSources();
+		const newPassword = generatePassword(sources);
+		setResult(newPassword);
 	};
 
 	return (
 		<>
 			<h1>PASSWORD GENERATOR</h1>
-			<h3>Lunghezza</h3>
+			<h3>Length of password</h3>
 			<input
 				type="number"
-				name="lunghezza"
-				onChange={(e) => setlunghezza(e.target.value)}
+				name="passLength"
+				onChange={(e) => setpassLength(e.target.value)}
 			/>
 			<form action="dop-functional">
 				<div>
-					<label htmlFor="">Lettere maiuscule</label>
+					<label htmlFor="">Uppercase letters</label>
 					<input
 						type="checkbox"
 						name="capital"
-						checked={checkboxState.capital}
+						checked={checkboxStatus.capital}
 						onChange={handleCheckboxChange}
 					/>
 				</div>
 				<div>
-					<label htmlFor="">Numeri</label>
+					<label htmlFor="">Numbers</label>
 					<input
 						type="checkbox"
 						name="numbers"
-						checked={checkboxState.numbers}
+						checked={checkboxStatus.numbers}
 						onChange={handleCheckboxChange}
 					/>
 				</div>
 				<div>
-					<label htmlFor="">Car speciali</label>
+					<label htmlFor="">Special characters</label>
 					<input
 						type="checkbox"
 						name="special"
-						checked={checkboxState.special}
+						checked={checkboxStatus.special}
 						onChange={handleCheckboxChange}
 					/>
 				</div>
