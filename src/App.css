@@ -3,34 +3,104 @@
 	margin: 0 auto;
 	padding: 2rem;
 	text-align: center;
-}
-
-div.app {
-  display: flex;
+	background-color: var(--primary-color);
 }
 
 input {
 	margin: 1em;
+	background-color: var(--input-color);
 }
-input[type="number"],
-input[type="text"] {
-	height: 3em;
+
+.output {
+	display: flex;
+}
+
+.output input {
+	flex: 1;
+	margin: 0;
 	outline: none;
 	border: 0;
-	border-radius: 8px;
-  padding-left: 1em;
+	padding-left: 1em;
 }
-
-button.btn.btn-danger{
-  margin: 1em 0;
-  background-color: brown;
-}
-
-hr {
-  margin: 0 1em  0 5em;
+.output button {
+	background-color: var(--primary-color);
+	border: 8px solid var(--input-color);
 }
 
 form {
-  text-align: start;
-  margin-left: 8px;
+	text-align: start;
+	margin: 2em 6px;
 }
+
+select {
+	height: 2em;
+	margin-block: auto;
+	border: 0;
+	background-color: var(--input-color);
+}
+
+div.checkbox {
+	display: flex;
+	justify-content: space-between;
+	/* display: block; */
+	position: relative;
+	cursor: pointer;
+}
+label.checkbox {
+	display: flex;
+	justify-content: space-between;
+	/* display: block; */
+	position: relative;
+	cursor: pointer;
+}
+
+input[type="checkbox"] {
+	/* position: absolute; */
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+	position: absolute;
+  top: 0;
+  right: 0;
+  height: 1em;
+  width: 1em;
+  background-color: var(--input-color);
+}
+
+.checkbox input:checked ~ .checkmark {
+	background-color: #ff1818;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.checkbox .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+button.btn {
+	margin: 1em 0;
+	background-color: var(--secondary-color);
+}
+
+
+

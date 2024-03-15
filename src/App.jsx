@@ -50,69 +50,93 @@ function App() {
 		setResult(newPassword);
 	};
 
-  const handleCopy = () => {
-    const inputField = document.getElementById('passwordInput');
-    inputField.select();
-    document.execCommand('copy');
-  };
+	const handleCopy = () => {
+		const inputField = document.getElementById("passwordInput");
+		inputField.select();
+		document.execCommand("copy");
+	};
 
 	return (
 		<>
 			<h1>PASSWORD GENERATOR</h1>
-			<div className="app">
-				<div>
-					<h2>Length of password</h2>
-					<input
-						type="number"
+			<div className="output">
+				<input type="text" value={result} id="passwordInput" />
+				<button onClick={handleCopy}>Copy</button>
+			</div>
+
+			<form action="dop-functional">
+				<div className="checkbox">
+					<p>Length of password</p>
+					<select
 						name="passLength"
 						onChange={(e) => setpassLength(e.target.value)}
-					/>
-					<form action="dop-functional">
-						<div>
-							<input
-								type="checkbox"
-								name="capital"
-								checked={checkboxStatus.capital}
-								onChange={handleCheckboxChange}
-							/>
-							<label htmlFor="">Uppercase letters</label>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								name="numbers"
-								checked={checkboxStatus.numbers}
-								onChange={handleCheckboxChange}
-							/>
-							<label htmlFor="">Numbers</label>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								name="special"
-								checked={checkboxStatus.special}
-								onChange={handleCheckboxChange}
-							/>
-							<label htmlFor="">Special characters</label>
-						</div>
-					</form>
-					<button
-						type="button"
-						className="btn btn-danger"
-						onClick={handleGeneration}
 					>
-						Generation
-					</button>
+						<optgroup label="Weak">
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+						</optgroup>
+						<optgroup label="Medium">
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+						</optgroup>
+						<optgroup label="Strong">
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+							<option>21</option>
+							<option>22</option>
+							<option>23</option>
+							<option>24</option>
+						</optgroup>
+					</select>
 				</div>
-				<hr />
-				<div>
-					<h2>PASSWORD:</h2>
-					<div>
-						<input type="text" value={result} id="passwordInput" />
-						<button onClick={handleCopy}>Copy</button>
-					</div>
+				<div className="">
+					<label className="checkbox" htmlFor="">Uppercase letters
+					<input
+						type="checkbox"
+						name="capital"
+						checked={checkboxStatus.capital}
+						onChange={handleCheckboxChange}
+					/>
+					
+					<span class="checkmark"></span>
+					</label>
+					
 				</div>
-			</div>
+				<div className="checkbox">
+					<label htmlFor="">Numbers</label>
+					<input
+						type="checkbox"
+						name="numbers"
+						checked={checkboxStatus.numbers}
+						onChange={handleCheckboxChange}
+					/>
+				</div>
+				<div className="checkbox">
+					<label htmlFor="">Special characters</label>
+					<input
+						type="checkbox"
+						name="special"
+						checked={checkboxStatus.special}
+						onChange={handleCheckboxChange}
+					/>
+				</div>
+			</form>
+			<button
+				type="button"
+				className="btn generate"
+				onClick={handleGeneration}
+			>
+				Generate password
+			</button>
 		</>
 	);
 }
