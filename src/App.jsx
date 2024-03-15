@@ -3,13 +3,14 @@ import "./App.css";
 import { capital, numbers, special, letters } from "../helpers";
 
 function App() {
-	const [passLength, setpassLength] = useState(0);
+	const [passLength, setpassLength] = useState(16);
 	const [checkboxStatus, setCheckboxStatus] = useState({
 		capital: false,
 		numbers: false,
 		special: false,
 	});
 	const [result, setResult] = useState("");
+	const [copyText, setCopyText] = useState("Copy");
 
 	const generatePassword = (sources) => {
 		let password = "";
@@ -51,9 +52,16 @@ function App() {
 	};
 
 	const handleCopy = () => {
-		const inputField = document.getElementById("passwordInput");
+		/*const inputField = document.getElementById("passwordInput");
 		inputField.select();
-		document.execCommand("copy");
+		document.execCommand("copy");*/
+
+		navigator.clipboard.writeText(result);
+
+		setCopyText("Copied!");
+		setTimeout(() => {
+			setCopyText("Copy");
+		}, "1500");
 	};
 
 	return (
@@ -61,7 +69,7 @@ function App() {
 			<h1>PASSWORD GENERATOR</h1>
 			<div className="output">
 				<input type="text" value={result} id="passwordInput" />
-				<button onClick={handleCopy}>Copy</button>
+				<button onClick={handleCopy}>{copyText}</button>
 			</div>
 
 			<form action="dop-functional">
@@ -70,6 +78,7 @@ function App() {
 					<select
 						name="passLength"
 						onChange={(e) => setpassLength(e.target.value)}
+						value={passLength}
 					>
 						<optgroup label="Weak">
 							<option>6</option>
