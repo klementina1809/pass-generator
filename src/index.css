@@ -13,9 +13,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: #344955;
-  --secondary-color: #50727B; 
-  --input-color: #35374B; 
+  --primary-color: #1B4242;
+  --secondary-color: #5C8374; 
+  --input-color: #092635; 
 }
 
 a {
