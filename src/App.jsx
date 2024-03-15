@@ -107,7 +107,7 @@ function App() {
 						</optgroup>
 					</select>
 				</div>
-				<div className="">
+				<div>
 					<label className="checkbox">
 						Uppercase letters
 						<input
@@ -119,26 +119,36 @@ function App() {
 						<span class="checkmark"></span>
 					</label>
 				</div>
-				<div className="checkbox">
-					<label htmlFor="">Numbers</label>
-					<input
-						type="checkbox"
-						name="numbers"
-						checked={checkboxStatus.numbers}
-						onChange={handleCheckboxChange}
-					/>
+				<div>
+					<label className="checkbox">
+						Numbers
+						<input
+							type="checkbox"
+							name="numbers"
+							checked={checkboxStatus.numbers}
+							onChange={handleCheckboxChange}
+						/>
+						<span class="checkmark"></span>
+					</label>
 				</div>
-				<div className="checkbox">
-					<label htmlFor="">Special characters</label>
-					<input
-						type="checkbox"
-						name="special"
-						checked={checkboxStatus.special}
-						onChange={handleCheckboxChange}
-					/>
+				<div>
+					<label className="checkbox">
+						Special characters
+						<input
+							type="checkbox"
+							name="special"
+							checked={checkboxStatus.special}
+							onChange={handleCheckboxChange}
+						/>
+						<span class="checkmark"></span>
+					</label>
 				</div>
 			</form>
-			<button type="button" className="btn generate" onClick={handleGeneration}>
+			<button
+				type="button"
+				className="btn generate"
+				onClick={handleGeneration}
+			>
 				Generate password
 			</button>
 		</>
