@@ -99,17 +99,16 @@ function App() {
 					</select>
 				</div>
 				<div className="">
-					<label className="checkbox" htmlFor="">Uppercase letters
-					<input
-						type="checkbox"
-						name="capital"
-						checked={checkboxStatus.capital}
-						onChange={handleCheckboxChange}
-					/>
-					
-					<span class="checkmark"></span>
+					<label className="checkbox">
+						Uppercase letters
+						<input
+							type="checkbox"
+							name="capital"
+							checked={checkboxStatus.capital}
+							onChange={handleCheckboxChange}
+						/>
+						<span class="checkmark"></span>
 					</label>
-					
 				</div>
 				<div className="checkbox">
 					<label htmlFor="">Numbers</label>
@@ -130,11 +129,7 @@ function App() {
 					/>
 				</div>
 			</form>
-			<button
-				type="button"
-				className="btn generate"
-				onClick={handleGeneration}
-			>
+			<button type="button" className="btn generate" onClick={handleGeneration}>
 				Generate password
 			</button>
 		</>
